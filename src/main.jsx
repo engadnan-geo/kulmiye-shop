@@ -8,6 +8,8 @@ import Home from './Pages/Home.jsx'
 import Countect from './Pages/Countect.jsx'
 import Products from './Pages/Products.jsx'
 import Carts from './Pages/Carts.jsx'
+import SinginPage from './Pages/SinginPage.jsx'
+import SingupPage from './Pages/SingupPage.jsx'
 
 
 const routerprovider=createBrowserRouter([
@@ -35,6 +37,14 @@ const routerprovider=createBrowserRouter([
       {
         path:"/carts",
         element:<Carts/>
+      },
+      {
+        path:"/signin",
+        element:<SinginPage/>
+      },
+      {
+       path:"/signup" ,
+       element:<SingupPage/>
       }
     ]
   }

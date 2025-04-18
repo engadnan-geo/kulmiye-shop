@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { RiUser3Fill } from "react-icons/ri";
 import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
-    const [isLoggedIn,setisLoggedIn]=useState(false)
+    const {isLoggedIn,profile,logout }=useAuth()
     const [isMenuOpen, setisMenuOpen]=useState(false)
     const [isDropdownOpen,setisDropdownOpen]=useState(false)
   return (
@@ -34,7 +35,7 @@ const Header = () => {
             {
                 isLoggedIn ? (<div className=' hidden sm:flex space-x-2'>
                 <div >
-                    <span>hellow</span>
+                    <span>{profile?.username}</span>
                    
                 </div>
 
@@ -49,9 +50,11 @@ const Header = () => {
                 isDropdownOpen &&(
                     <div className='bg-white absolute right-0 w-48 mt-1 rounded-md shadow-lg z-10  ' onMouseLeave={()=>setisDropdownOpen(false)}>
                         <div className='flex flex-col justify-center items-center p-4'>
-                        <Link>your profile</Link>
-                        <Link>manage store</Link>
-                        <button>singout</button>
+                        <Link to="/profile"  >your profile</Link>
+                        <Link to="/dashboard">Dashboard</Link>
+                        <button
+                   onClick={() => logout()}
+                 className='block px-4 py-2 text-sm text-gray700 hover:bg-blue-500  hover:text-white'>Signout</button>
                         </div>
                     </div>
                 )
@@ -128,7 +131,7 @@ const Header = () => {
 
             {isLoggedIn && (
               <>
-                <Link to="/editor" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
+                <Link to="/dashboard" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
                 Dashboard
                 </Link>
                 

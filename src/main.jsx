@@ -10,6 +10,9 @@ import Products from './Pages/Products.jsx'
 import Carts from './Pages/Carts.jsx'
 import SinginPage from './Pages/SinginPage.jsx'
 import SingupPage from './Pages/SingupPage.jsx'
+import UnAuthenticatedRoute from './components/UnAuthenticatedRoute.jsx'
+import Dashboard from './Pages/Dashboard.jsx'
+
 
 
 const routerprovider=createBrowserRouter([
@@ -36,16 +39,23 @@ const routerprovider=createBrowserRouter([
       },
       {
         path:"/carts",
-        element:<Carts/>
+        element:<UnAuthenticatedRoute> <Carts/></UnAuthenticatedRoute>  
       },
       {
         path:"/signin",
-        element:<SinginPage/>
+        element: <UnAuthenticatedRoute><SinginPage/></UnAuthenticatedRoute>   
       },
       {
        path:"/signup" ,
-       element:<SingupPage/>
+       element: <UnAuthenticatedRoute><SingupPage/></UnAuthenticatedRoute>
+       
+      },
+      
+      {
+        path:"/dashboard",
+        element:<UnAuthenticatedRoute> <Dashboard/></UnAuthenticatedRoute>   
       }
+
     ]
   }
 ])

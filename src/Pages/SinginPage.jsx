@@ -1,11 +1,29 @@
 import React, { useState } from 'react'
+import { signIn } from '../lib/auth'
+import { useNavigate } from 'react-router-dom'
 
 const SinginPage = () => {
-const [error,seterorr]=useState("")
-const [isLoading,setisLoading]=useState("")
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
+const navigate=useNavigate()
 
-
-
+const handlesubmit =  async(e)=>{
+    e.preventDefault()
+    setIsLoading(true)
+  setError(null)
+  try {
+    await signIn(email,password)
+navigate("/")
+  } catch(error){
+    setError(error.message || "failed to sign in .please check your credentials." )
+    
+console.error("hi thayis error for submit log in")
+  }finally{
+    setIsLoading(false)
+  }
+}
 
   return (
     <div className='min-h-screen p-4 bg-white  flex justify-between items-center'>
@@ -17,21 +35,29 @@ const [isLoading,setisLoading]=useState("")
                  
              </div>
             {/* error */}
-            <div className='mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm'>
-           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ex deleniti hic repellendus sed modi soluta nesciunt optio in id cum iusto delectus, voluptatem aut enim sint nulla quasi illum?
-            </div>
-            <form >
+            
+            {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm">
+            {error}
+          </div>
+        )}
+            
+            <form  onSubmit={handlesubmit}>
                 <div className='flex flex-col space-y-2'>
                 <label htmlFor="" className='text-gray-700 font-bold text-xl'>Email
                 <input type="email" name="" id=""  className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
                 '
                 placeholder="@gmail.com"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 />
                 </label>
                 <label htmlFor=""  className='text-gray-700 font-bold text-xl'>
                     Password
                     <input type="password" name="" id="" className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500' 
                      placeholder='*******'
+                     value={password}
+                     onChange={(e)=>setPassword(e.target.value)}
                      />
                 </label>
                 </div>

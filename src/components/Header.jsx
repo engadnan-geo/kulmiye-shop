@@ -9,6 +9,11 @@ const Header = () => {
     const {isLoggedIn,profile,logout }=useAuth()
     const [isMenuOpen, setisMenuOpen]=useState(false)
     const [isDropdownOpen,setisDropdownOpen]=useState(false)
+
+const avater_url="https://media.istockphoto.com/id/1599881384/photo/portrait-of-a-mature-businessman-with-gray-beard.jpg?s=1024x1024&w=is&k=20&c=NSY5NXSQRlClar1CrPkYSg3G4MRzzIdx-wZtpq9i2a8="
+
+
+
   return (
     <div className='fixed top-0   left-0  right-0    bg-blue-500 bg-opacity-60 backdrop-blur-md shadow z-10  '>
        <div className='max-w-4xl mx-auto p-4'>
@@ -44,7 +49,11 @@ const Header = () => {
         onMouseEnter={()=>setisDropdownOpen(true)}
             onclick={()=>setisDropdownOpen(!isDropdownOpen)}>
                 
- <img src="https://images.unsplash.com/photo-1742201876722-85a042294575?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className='w-8 h-8 rounded-full' /> 
+                {
+                avater_url ? <img src={profile}  className='w-8 h-8 rounded-full' /> : 
+                <RiUser3Fill className='text-gray-600'
+                 />
+            }
                 </button>
                 {
                 isDropdownOpen &&(

@@ -12,6 +12,12 @@ import SinginPage from './Pages/SinginPage.jsx'
 import SingupPage from './Pages/SingupPage.jsx'
 import UnAuthenticatedRoute from './components/UnAuthenticatedRoute.jsx'
 import Dashboard from './Pages/Dashboard.jsx'
+import ProfilePage from './Pages/ProfilePage.jsx'
+import IncomePage from './Pages/IncomePage.jsx'
+import OrdersPage from './Pages/OrdersPage.jsx'
+import AddItems from './Pages/AddItems.jsx'
+import ManageItems from './Pages/ManageItems.jsx'
+
 
 
 
@@ -50,10 +56,41 @@ const routerprovider=createBrowserRouter([
        element: <UnAuthenticatedRoute><SingupPage/></UnAuthenticatedRoute>
        
       },
+      {
+        path:"/profile",
+        element:<ProfilePage/>
+      },
       
       {
         path:"/dashboard",
-        element:<UnAuthenticatedRoute> <Dashboard/></UnAuthenticatedRoute>   
+        element:<UnAuthenticatedRoute> <Dashboard/></UnAuthenticatedRoute> ,
+        children:[
+          {
+            path:"additems",
+            element:< AddItems/>,
+            index:true
+
+          },
+          {
+            path:"/dashboard/additems/:id",
+            element:< AddItems/>
+          },
+          {
+            path:"manageitems",
+            element:<ManageItems/>
+          },
+          {
+            path:"income",
+             element:<IncomePage/>
+          },
+
+          {
+            path:"orders",
+            element:<OrdersPage/>
+
+          }
+        ]
+        
       }
 
     ]

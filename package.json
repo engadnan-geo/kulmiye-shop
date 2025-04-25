@@ -16,6 +16,7 @@
     "@tensorflow/tfjs": "^4.22.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.9.1",
+    "lucide-react": "^0.503.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",

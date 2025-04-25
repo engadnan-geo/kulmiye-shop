@@ -26,7 +26,7 @@ import Dashboardcom from './Pages/Dashboardcom.jsx'
 
 const routerprovider=createBrowserRouter([
   {
-    path:"/",
+    path:"",
     element:<App/>,
     children:[
       {

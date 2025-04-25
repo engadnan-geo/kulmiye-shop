@@ -79,15 +79,9 @@ const ProfilePage = () => {
   
               const fileExt = avatar.name.split(".").pop();
               const fileName = `${user.id}-${Math.random().toString(36).substring(2)}`;
-              const filePath = `${fileName}.${fileExt}`;
+              const filePath = `avatars/${fileName}.${fileExt}`;
   
-              const { error: uploadError } = await supabase.storage
-              .from("avatars")
-              .upload(filePath, avatar, {
-                cacheControl: '3600',
-                upsert: true, // allows overwrite
-              });
-            
+              const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, avatar);
   
               if (uploadError) throw uploadError
   
@@ -133,20 +127,20 @@ const ProfilePage = () => {
   
   
     return (
-      <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
               <div className="max-w-3xl mx-auto">
                   <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                       {/* Profile Header */}
-                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-8">
+                      <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-8">
                           <div className="flex flex-col items-center">
   
                               <div className="relative group">
                                   {/* profile picture */}
                                   <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
                                       <img
-                                          src={avatarUrl  }
+                                          src={avatarUrl || 'https://images.unsplash.com/photo-1495211895963-08d8812dcbf0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
                                           alt="Profile"
-                                          className="w-full h-full object-cover "
+                                          className="w-full h-full object-cover"
                                       />
                                   </div>
   
@@ -157,7 +151,7 @@ const ProfilePage = () => {
                                       className="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg cursor-pointer
                              transform transition-transform duration-200 hover:scale-110"
                                   >
-                                      <FiCamera className="w-5 h-5 text-blue-600" />
+                                      <FiCamera className="w-5 h-5 text-orange-600" />
                                   </label>
                                   <input
                                       type="file"
@@ -197,7 +191,7 @@ const ProfilePage = () => {
                                           value={username || ""}
                                           onChange={(e) => setUsername(e.target.value)}
                                           className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md 
-                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                               focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                                           required
                                       />
                                   </div>
@@ -232,8 +226,8 @@ const ProfilePage = () => {
                                   type="submit"
                                   disabled={loading}
                                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium 
-                                   rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 
-                                  focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 cursor-pointer"
+                                   rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 
+                                  focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 cursor-pointer"
                               >
                                   {loading ? 'Saving...' : 'Save Changes'}
                               </button>

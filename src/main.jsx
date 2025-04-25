@@ -14,9 +14,10 @@ import UnAuthenticatedRoute from './components/UnAuthenticatedRoute.jsx'
 import Dashboard from './Pages/Dashboard.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 import IncomePage from './Pages/IncomePage.jsx'
-import OrdersPage from './Pages/OrdersPage.jsx'
 import AddItems from './Pages/AddItems.jsx'
 import ManageItems from './Pages/ManageItems.jsx'
+import Product from './Pages/Product.jsx'
+import SeeOrders from './Pages/SeeOders.jsx'
 
 
 
@@ -43,6 +44,11 @@ const routerprovider=createBrowserRouter([
         path:"/product",
         element:<Products/>
       },
+      {
+        path:"products/:id",
+        element:<Product/>
+      },
+
       {
         path:"/carts",
         element:<UnAuthenticatedRoute> <Carts/></UnAuthenticatedRoute>  
@@ -86,7 +92,7 @@ const routerprovider=createBrowserRouter([
 
           {
             path:"orders",
-            element:<OrdersPage/>
+            element:<SeeOrders/>
 
           }
         ]

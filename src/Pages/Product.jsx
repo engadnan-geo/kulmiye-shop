@@ -124,7 +124,7 @@ const handleCart =async () => {
         price:item.price,
         image_url:item.image_url,
         tags:item.tags,
-        describe:item.describe,
+        describe:item.Discription,
         quantity:state.quantity
       })
       if(error)throw error
@@ -222,7 +222,7 @@ setOrderStatus(data.status);
   if (isLoading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <div className="animate-spin h-12 w-12 border-4 border-orange-500 rounded-full border-t-transparent" />
+        <div className="animate-spin h-12 w-12 border-4 border-blue-500 rounded-full border-t-transparent" />
       </div>
     );
   }
@@ -230,7 +230,7 @@ setOrderStatus(data.status);
   return (
     <div className="min-h-screen py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2  gap-x-4">
           <div>
             <div>
               <button
@@ -241,7 +241,7 @@ setOrderStatus(data.status);
               </button>
             </div>
             <img
-            className="w-full object-cover"
+            className="w-full object-cover rounded mt-2"
             src={item.image_url} alt={item.name} />
           </div>
           <div className="mt-16 flex flex-col space-y-2">
@@ -260,21 +260,21 @@ setOrderStatus(data.status);
               className="bg-gray-50 p-2 rounded">+</button>
             </span>
             <span className="text-lg sm:text-xl font-semibold">${item.price*state.quantity}</span>
-            {item.describe&&<p>{item.describe}</p>}
+            {item.Discription&&<p>{item.Discription}</p>}
             {orderStatus && (
               <p className="text-sm text-gray-500 mt-2">
-                Order Status: <span className="font-bold text-orange-400">{orderStatus}</span>
+                Order Status: <span className="font-bold text-blue-400">{orderStatus}</span>
               </p>
             )}
             <div className="space-x-1 mt-2">
               <button
               onClick={handleCart}
-              className="bg-orange-500 text-white py-2 px-4 rounded-lg">{
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg">{
                 isAdded?'remove cart':'add to cart'
               }</button>
               <button
               onClick={handleBuy}
-              className="bg-orange-500 text-white py-2 px-4 rounded-lg">
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg">
                 {isOrdered?'cancel order':'buy now'}
               </button>
             </div>

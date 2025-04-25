@@ -103,10 +103,10 @@ const Home = () => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent " />
 
       {/* Hero Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6">
+      <div className="relative  flex flex-col items-center justify-center h-full text-white text-center px-6 ">
         <motion.h1
           className="text-4xl md:text-6xl font-extrabold drop-shadow-lg mb-4"
           initial={{ opacity: 0, y: 20 }}

@@ -31,6 +31,7 @@ const routerprovider=createBrowserRouter([
     children:[
       {
         index:true,
+        path:"home",
         element:<Home/>,
         
       },

@@ -18,6 +18,8 @@ import AddItems from './Pages/AddItems.jsx'
 import ManageItems from './Pages/ManageItems.jsx'
 import Product from './Pages/Product.jsx'
 import SeeOrders from './Pages/SeeOders.jsx'
+import MessagesPage from './Pages/Masseges.jsx'
+import Dashboardcom from './Pages/Dashboardcom.jsx'
 
 
 
@@ -72,9 +74,14 @@ const routerprovider=createBrowserRouter([
         element:<UnAuthenticatedRoute> <Dashboard/></UnAuthenticatedRoute> ,
         children:[
           {
+            path:"",
+            element:<Dashboardcom/>,
+             index:true
+          },
+          {
             path:"additems",
             element:< AddItems/>,
-            index:true
+            
 
           },
           {
@@ -94,6 +101,10 @@ const routerprovider=createBrowserRouter([
             path:"orders",
             element:<SeeOrders/>
 
+          },
+          {
+            path:"messege",
+            element:<MessagesPage/>
           }
         ]
         

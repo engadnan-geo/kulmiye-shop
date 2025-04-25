@@ -9,10 +9,10 @@ const supabase=createClient(superbaseUrl,supabaseAnonKey,{
     persistSession:true,
     autoRefreshToken:true
     },
-    realtime:{
-           prams:{
-            eventspersecond:10
-           }
+    realtime: {
+        params: { 
+          eventsPerSecond: 10, 
+        },
     }
     })
     

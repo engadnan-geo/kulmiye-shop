@@ -9,17 +9,20 @@ const IncomePage = () => {
   const [note, setNote] = useState('');
   const [incomes, setIncomes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [itemsIncome, setItemsIncome] = useState(0);
 
-  // Fetch income records from the database
+  // Fetch income and items on mount
   useEffect(() => {
     fetchIncomes();
+    fetchItemsIncome();
   }, []);
 
+  // Fetch manual incomes
   const fetchIncomes = async () => {
     setIsLoading(true);
     const { data, error } = await supabase
       .from('incomes')
-      .select('*, item:items(itemName)')
+      .select('*')
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -31,20 +34,36 @@ const IncomePage = () => {
     setIsLoading(false);
   };
 
-  // Handle adding a new income record
+  // Fetch and calculate total income from items
+  const fetchItemsIncome = async () => {
+    const { data, error } = await supabase.from('items').select('*'); // or 'cart'
+    if (error) {
+      console.error('Error fetching items:', error);
+      toast.error('Failed to load item income');
+    } else {
+      const total = data.reduce((sum, item) => {
+        return sum + (item.price || 0) * (item.quantity || 1); // safe handling
+      }, 0);
+      setItemsIncome(total);
+    }
+  };
+
+  // Add new manual income
   const handleAddIncome = async (e) => {
     e.preventDefault();
     if (!amount || !source) {
       toast.error('Amount and source are required');
       return;
     }
-    const { data, error } = await supabase.from('incomes').insert([
+
+    const { error } = await supabase.from('incomes').insert([
       {
         amount: parseFloat(amount),
         source,
         note,
       },
     ]);
+
     if (error) {
       console.error(error);
       toast.error('Failed to add income');
@@ -53,27 +72,28 @@ const IncomePage = () => {
       setAmount('');
       setSource('');
       setNote('');
-      fetchIncomes(); // Refresh income list
+      fetchIncomes();
     }
   };
 
-  // Handle income deletion
+  // Delete manual income
   const handleDelete = async (id) => {
     const { error } = await supabase.from('incomes').delete().eq('id', id);
     if (error) {
       toast.error('Failed to delete');
     } else {
       toast.success('Income deleted');
-      fetchIncomes(); // Refresh income list
+      fetchIncomes();
     }
   };
 
-  // Calculate the total income
-  const totalIncome = incomes.reduce((sum, item) => sum + item.amount, 0);
+  // Calculations
+  const manualIncome = incomes.reduce((sum, item) => sum + item.amount, 0);
+  const totalIncome = manualIncome + itemsIncome;
 
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col items-center py-10 px-4">
-      {/* Add Income Form */}
+      {/* Form */}
       <div className="max-w-xl w-full bg-white p-6 rounded-xl shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-blue-700">💰 Income Tracker</h2>
         <form onSubmit={handleAddIncome} className="space-y-3">
@@ -106,14 +126,20 @@ const IncomePage = () => {
         </form>
       </div>
 
-      {/* Display Total Income */}
-      <div className="max-w-xl w-full bg-white p-6 rounded-xl shadow-md mt-6">
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">
-          Total Income: <span className="text-green-600">${totalIncome.toFixed(2)}</span>
+      {/* Totals */}
+      <div className="max-w-xl w-full bg-white p-6 rounded-xl shadow-md mt-6 space-y-2">
+        <h3 className="text-lg font-semibold text-gray-700">
+          Manual Income: <span className="text-green-600">${manualIncome.toFixed(2)}</span>
+        </h3>
+        <h3 className="text-lg font-semibold text-gray-700">
+          Items Income: <span className="text-green-600">${itemsIncome.toFixed(2)}</span>
+        </h3>
+        <h3 className="text-xl font-bold text-blue-800">
+          💰 Total Income: <span className="text-green-700">${totalIncome.toFixed(2)}</span>
         </h3>
       </div>
 
-      {/* Display Income List */}
+      {/* List */}
       <div className="max-w-xl w-full bg-white p-6 rounded-xl shadow-md mt-6">
         {isLoading ? (
           <div className="text-center">Loading incomes...</div>

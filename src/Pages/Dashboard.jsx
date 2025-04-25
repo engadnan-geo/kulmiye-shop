@@ -44,6 +44,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
+
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 p-4">
@@ -65,11 +66,15 @@ const Dashboard = () => {
             <Link to="/dashboard/orders" className="text-lg font-medium bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-full transition">
               Orders
             </Link>
+            <Link to="/dashboard/messege" className="text-lg font-medium bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-full transition">
+              masseges
+            </Link>
           </nav>
         </aside>
 
         {/* Main Content */}
         <main className="flex-1 bg-white shadow-md rounded-xl p-6">
+            
           <Outlet />
         </main>
       </div>

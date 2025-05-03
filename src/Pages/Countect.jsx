@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../lib/supabase';
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Countect = () => {
   const [name, setName] = useState('');
@@ -143,20 +144,23 @@ const Countect = () => {
       </div>
 
       {/* Contact Info + Socials */}
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-semibold text-center text-blue-800 mb-8">Follow Us</h2>
-        <div className="flex justify-center space-x-6">
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-            <i className="fab fa-twitter text-3xl"></i>
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-            <i className="fab fa-facebook text-3xl"></i>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
-            <i className="fab fa-instagram text-3xl"></i>
-          </a>
-        </div>
+      <section className="bg-white py-10 text-center">
+      <h2 className="text-2xl font-bold mb-6">Follow Us</h2>
+      <div className="flex justify-center gap-6">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <Facebook className="w-8 h-8 text-blue-600 hover:scale-110 transition" />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <Twitter className="w-8 h-8 text-sky-500 hover:scale-110 transition" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <Instagram className="w-8 h-8 text-pink-500 hover:scale-110 transition" />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <Linkedin className="w-8 h-8 text-blue-700 hover:scale-110 transition" />
+        </a>
       </div>
+    </section>
     </div>
   );
 };

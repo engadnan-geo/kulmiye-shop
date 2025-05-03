@@ -36,32 +36,48 @@ const SeeOrders = () => {
     );
   }
   return (
-    <div className="min-h-screen  py-8 px-4 sm:px-8 bg-white">
-      <h1 className="text-xl sm:text-3xl font-bold mb-6 text-center text-gray-800">Users Orders</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {
-        orderItems.map((order)=>(
-          <div
-           key={order.id}
-           className="bg-white shadow-md rounded-lg p-4 border">
-            <h2></h2>
-            <p className="text-gray-600">customer: {order.user_name}</p>
-            <p className="text-gray-600">ordered: {order.item_name}</p>
-            <p className="text-gray-600">Quantity: {order.quantity}</p>
-            <p className="text-gray-600">price: {order.price*order.quantity}</p>
-            <p>status: 
-            <span 
-            className={`text-sm font-semibold bg-sky-500 px-2 py-1 rounded-lg ${order.status === "pending" ? "text-yellow-200" : "text-green-200"}`}
-            onClick={() => handleStatus(order.id, order.status)}
-            >{order.status}</span>
-            </p>
-            <p className="text-gray-600">Location: {order.location}</p>
-            <p className="text-gray-600">Created At: {new Date(order.created_at).toLocaleString()}</p>
-          </div>
-        ))
-      }
-    </div>
-    </div>
+    <div className="min-h-screen py-8 px-4 sm:px-8 bg-blue-300">
+  <h1 className="text-xl sm:text-3xl font-bold mb-6 text-center text-gray-50">Users Orders</h1>
+
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white rounded-lg shadow-md border border-blue-800">
+      <thead>
+        <tr className="bg-blue-500 text-white text-left text-sm sm:text-base">
+          <th className="py-3 px-4">Customer</th>
+          <th className="py-3 px-4">Ordered</th>
+          <th className="py-3 px-4">Quantity</th>
+          <th className="py-3 px-4">Price</th>
+          <th className="py-3 px-4">Status</th>
+          <th className="py-3 px-4">Location</th>
+          <th className="py-3 px-4">Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orderItems.map((order) => (
+          <tr key={order.id} className="border-t border-gray-200 hover:bg-gray-100 text-gray-700">
+            <td className="py-2 px-4">{order.user_name}</td>
+            <td className="py-2 px-4">{order.item_name}</td>
+            <td className="py-2 px-4">{order.quantity}</td>
+            <td className="py-2 px-4">${order.price * order.quantity}</td>
+            <td className="py-2 px-4">
+              <span
+                className={`text-sm font-semibold bg-sky-500 px-2 py-1 rounded-lg cursor-pointer ${
+                  order.status === "pending" ? "text-red-500" : "text-green-200"
+                }`}
+                onClick={() => handleStatus(order.id, order.status)}
+              >
+                {order.status}
+              </span>
+            </td>
+            <td className="py-2 px-4">{order.location}</td>
+            <td className="py-2 px-4">{new Date(order.created_at).toLocaleString()}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   )
 }
 

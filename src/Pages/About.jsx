@@ -1,5 +1,6 @@
 import React from "react";
-import { ShoppingCart, BarChart3, Users, DollarSign } from "lucide-react";
+import { ShoppingCart, BarChart3, Users, DollarSign, Link } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="bg-white p-6 rounded-2xl shadow-md text-center">
@@ -12,12 +13,16 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
 );
 
 const About = () => {
+
+    
+        const navigate = useNavigate();
+
   return (
     <div className="px-4 py-12 max-w-7xl mx-auto space-y-24">
       {/* Hero Section */}
-      <section className="text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-3xl">
-        <h1 className="text-4xl font-bold mb-4">About SmartCart</h1>
-        <p className="text-lg max-w-2xl mx-auto">
+      <section className="text-center py-20 bg-gradient-to-br from-blue-200 to-blue-300 text-white rounded-3xl">
+        <h1 className="text-4xl font-bold mb-4">About kulmiye shopes</h1>
+        <p className="text-lg  max-w-2xl mx-auto ">
           A modern system designed for buyers, sellers, and store founders — track income, manage products, and grow your business.
         </p>
       </section>
@@ -25,7 +30,7 @@ const About = () => {
       {/* Mission Section */}
       <section className="text-center">
         <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-        <p className="text-gray-700 max-w-3xl mx-auto">
+        <p className="text-gray-500 max-w-3xl mx-auto">
           We believe that managing a store should be easy, powerful, and accessible. SmartCart empowers users to handle everything — from product listings to income tracking — with clarity and speed.
         </p>
         <img
@@ -37,7 +42,7 @@ const About = () => {
 
       {/* Features Section */}
       <section>
-        <h2 className="text-3xl font-bold text-center mb-12">Why SmartCart?</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Why kulmiye shopes?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <FeatureCard
             icon={ShoppingCart}
@@ -60,16 +65,28 @@ const About = () => {
             description="Smart tools to scale your shop and maximize profits."
           />
         </div>
+        
       </section>
 
       {/* Final Call to Action */}
       <section className="bg-gray-100 py-16 rounded-3xl text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to build your store?</h2>
-        <p className="text-gray-700 mb-6">SmartCart makes it simple. Start today and take control of your business future.</p>
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition">
+      <h2 className="text-3xl font-bold mb-4">Ready to build your store?</h2>
+      <p className="text-gray-700 mb-6">
+        Kulmiye Shopes makes it simple. Start today and take control of your business future.
+      </p>
+
+      <div className="flex justify-center">
+        <button
+          onClick={() => navigate("/signup")}
+          className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition text-xl"
+        >
           Get Started
         </button>
-      </section>
+      </div>
+    </section>
+
+
+
     </div>
   );
 };

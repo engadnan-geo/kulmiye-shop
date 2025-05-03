@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 
 
+
 const features = [
     {
       icon: <FaTruck  className="w-8 h-8 text-blue-500" />,
@@ -55,9 +56,9 @@ const features = [
 
 
   const images = [
+    'https://media.istockphoto.com/id/475263838/photo/many-mixed-breads-and-rolls-shot-from-above.jpg?s=1024x1024&w=is&k=20&c=Gb2zz0dhe8cUJdjQdH63oQCvpRZSDZuJkis835JcvEU=',
     'https://media.istockphoto.com/id/1224326999/photo/pepper-bag-full-of-groceries.jpg?s=1024x1024&w=is&k=20&c=oNeH2YqFYGCsEtNFqZPthTTFELdfQ4EbjAhpw6-BDcQ=',
-    'https://media.istockphoto.com/id/1271918471/photo/fabrics-and-colors-in-oriental-fantasies.jpg?s=1024x1024&w=is&k=20&c=gC8MTL4XlMMvSQqWBN1wb5w8cGFHf87V1rZUNDQQPGI=',
-    'https://plus.unsplash.com/premium_photo-1680985551009-05107cd2752c?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://media.istockphoto.com/id/2174699310/photo/handsome-man-shopping-for-a-new-smartphone-in-an-electronics-store.jpg?s=2048x2048&w=is&k=20&c=so9jIM80bRyuCw3y8NOrPFzG1vC_feKJAH6S7_Ecn1M=',
   ];
   
 
@@ -82,7 +83,7 @@ const Home = () => {
         const { data, error } = await supabase.from("items").select("*").limit(4);
         if (error) throw error;
         setfeatureItems(data);
-      };
+    };
 
   return (
     <div className="space-y-16 p-6">
@@ -138,17 +139,17 @@ const Home = () => {
 
     {/* How We Work */}
     <section>
-      <h2 className="text-2xl font-semibold mb-6 text-center">How We Work</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-center shadow-md">How We Work</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="p-4 border rounded-xl text-center">
-          <h3 className="font-bold text-xl mb-2">1. Upload or Search</h3>
-          <p>Use AI to find what you need via image or keywords.</p>
+          <h3 className="font-bold text-xl mb-2">1.Search your neads</h3>
+          <p>find what you need easy using  keywords.</p>
         </div>
-        <div className="p-4 border rounded-xl text-center">
+        <div className="p-4 border rounded-xl text-center shadow-md">
           <h3 className="font-bold text-xl mb-2">2. Get Recommendations</h3>
           <p>We suggest top products tailored to you.</p>
         </div>
-        <div className="p-4 border rounded-xl text-center">
+        <div className="p-4 border rounded-xl text-center shadow-md">
           <h3 className="font-bold text-xl mb-2">3. Easy Checkout</h3>
           <p>Quick and secure payment with fast delivery.</p>
         </div>
@@ -175,13 +176,13 @@ const Home = () => {
     {/* Testimonials */}
     <section>
       <h2 className="text-2xl font-semibold mb-6 text-center">Testimonials</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8  ">
         {testimonials.map((t, idx) => (
           <div
             key={idx}
-            className="p-6 border rounded-xl bg-white shadow-sm"
+            className="p-6 border rounded-xl  shadow-sm  bg-blue-300"
           >
-            <p className="italic">"{t.quote}"</p>
+            <p className="text-base">"{t.quote}"</p>
             <p className="mt-4 font-semibold text-right">- {t.name}</p>
           </div>
         ))}

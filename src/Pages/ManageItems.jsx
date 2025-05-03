@@ -57,7 +57,7 @@ try {
 
         <div className='flex justify-around items-center flex-wrap'>
             <h1 className='text-2xl md:4xl font-medium text-gray-800'>Manage items</h1>
-            <p className='text-2xl text-gray-600 font-medium'>total items</p>
+            <p className='text-2xl text-gray-600 font-medium'>total items={storeItem.length}</p>
 
         </div>
 {/* gride items */}

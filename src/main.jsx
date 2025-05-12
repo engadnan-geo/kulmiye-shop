@@ -21,7 +21,7 @@ import SeeOrders from './Pages/SeeOders.jsx'
 import MessagesPage from './Pages/Masseges.jsx'
 import Dashboardcom from './Pages/Dashboardcom.jsx'
 
-import { HashRouter } from 'react-router-dom';
+
 
 
 const routerprovider=createBrowserRouter([
@@ -121,8 +121,8 @@ const routerprovider=createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
+    
      <RouterProvider router={routerprovider}/>
-     </HashRouter>
+     
   </StrictMode>,
 )
